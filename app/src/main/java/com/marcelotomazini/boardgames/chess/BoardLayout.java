@@ -42,13 +42,7 @@ public class BoardLayout extends GridView {
 
             if(selected != null) {
                 Position to = ((BlockLayout)v).getPosition();
-                StringBuilder move = new StringBuilder()
-                        .append(selected.getPosition().col())
-                        .append(selected.getPosition().row())
-                        .append(to.col())
-                        .append(to.row());
-                onMoveListener.onMove(move.toString());
-//                move(((BlockLayout)v).getPosition());
+                move(((BlockLayout)v).getPosition());
                 deselect();
                 refresh();
             }
@@ -78,19 +72,17 @@ public class BoardLayout extends GridView {
     }
 
     public void move(String move) {
-        Position from = new Position(move.charAt(0), move.charAt(1));
-        Position to = new Position(move.charAt(2), move.charAt(3));
-
-        try {
-            chessGame.move(from, to);
-        } catch (PromotionException e) {
-            showPromotePieceDialog();
-        } catch (RuntimeException e) {
-            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-        }
+        if(move.charAt(0) == 'p')
+            chessGame.promoteTo(PieceType.valueOf(move.substring(1)));
+        else
+            try {
+                Position from = new Position(move.charAt(0), Integer.valueOf(move.substring(1, 2)));
+                Position to = new Position(move.charAt(2), Integer.valueOf(move.substring(3, 4)));
+                chessGame.move(from, to);
+            } catch (Exception e) {}
     }
 
-    private void refresh() {
+    public void refresh() {
         for(int i = 0; i < getAdapter().getCount(); i++) {
             BlockLayout view = getAdapter().getView(i, null, null);
             view.removeAllViews();
@@ -153,6 +145,13 @@ public class BoardLayout extends GridView {
     private void move(Position to) {
         try {
             chessGame.move(selected.getPosition(), to);
+
+            StringBuilder move = new StringBuilder()
+                    .append(selected.getPosition().col())
+                    .append(selected.getPosition().row())
+                    .append(to.col())
+                    .append(to.row());
+            onMoveListener.onMove(move.toString());
         } catch (PromotionException e) {
             showPromotePieceDialog();
         } catch (RuntimeException e) {
@@ -169,6 +168,12 @@ public class BoardLayout extends GridView {
             @Override
             public void selected(PieceType pieceType) {
                 chessGame.promoteTo(pieceType);
+
+                StringBuilder move = new StringBuilder()
+                        .append('p')
+                        .append(pieceType.name());
+                onMoveListener.onMove(move.toString());
+
                 refresh();
             }
         });

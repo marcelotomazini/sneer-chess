@@ -13,14 +13,14 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-            <meta-data android:name="SneerApp" android:value="" />
             <meta-data
                 android:name="sneer:session-type"
-                android:value="com.marcelotomazini.boardgames.chess"/>
+                android:value="sneer-chess"/>
         </activity>
+
+        <meta-data android:name="SneerApp" android:value="" />
     </application>
 
 </manifest>

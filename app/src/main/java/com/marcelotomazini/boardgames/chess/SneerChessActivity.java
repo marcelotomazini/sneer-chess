@@ -19,13 +19,12 @@ public class SneerChessActivity extends Activity implements BoardLayout.OnMoveLi
         session = PartnerSession.join(this, new PartnerSession.Listener() {
             @Override
             public void onMessage(Message message) {
-                //Called for every message sent by you and by your partner.
                 boardLayout.move((String) message.payload());
             }
 
             @Override
             public void onUpToDate() {
-                //Called when there are no more messages pending in the session.
+                boardLayout.refresh();
             }
         });
 
