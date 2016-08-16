@@ -41,8 +41,8 @@ public class BoardLayout extends GridView {
             }
 
             if(selected != null) {
-                Position to = ((BlockLayout)v).getPosition();
-                move(((BlockLayout)v).getPosition());
+                if(chessGame.find(selected.getPosition()).piece().color() == myColor)
+                    move(((BlockLayout)v).getPosition());
                 deselect();
                 refresh();
             }
@@ -53,11 +53,13 @@ public class BoardLayout extends GridView {
 
     private BlockLayout selected;
     private ChessGame chessGame;
+    private PieceColor myColor;
     private OnMoveListener onMoveListener;
 
     public BoardLayout(Context context, boolean wasStartedByMe) {
         super(context);
-        this.chessGame = new ChessGame(wasStartedByMe ? PieceColor.WHITE : PieceColor.BLACK);
+        this.myColor = wasStartedByMe ? PieceColor.WHITE : PieceColor.BLACK;
+        this.chessGame = new ChessGame(myColor);
         setAdapter(new BoardAdapter());
         setBackgroundColor(android.graphics.Color.WHITE);
         setNumColumns(8);
@@ -145,18 +147,18 @@ public class BoardLayout extends GridView {
     private void move(Position to) {
         try {
             chessGame.move(selected.getPosition(), to);
-
-            StringBuilder move = new StringBuilder()
-                    .append(selected.getPosition().col())
-                    .append(selected.getPosition().row())
-                    .append(to.col())
-                    .append(to.row());
-            onMoveListener.onMove(move.toString());
         } catch (PromotionException e) {
             showPromotePieceDialog();
         } catch (RuntimeException e) {
             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
+
+        StringBuilder move = new StringBuilder()
+                .append(selected.getPosition().col())
+                .append(selected.getPosition().row())
+                .append(to.col())
+                .append(to.row());
+        onMoveListener.onMove(move.toString());
     }
 
     private void showPromotePieceDialog() {

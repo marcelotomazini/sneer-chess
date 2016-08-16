@@ -1,13 +1,13 @@
 package com.marcelotomazini.boardgames.chess;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 import sneer.android.Message;
 import sneer.android.PartnerSession;
 
-public class SneerChessActivity extends Activity implements BoardLayout.OnMoveListener {
+public class SneerChessActivity extends AppCompatActivity implements BoardLayout.OnMoveListener {
 
     private PartnerSession session;
     private BoardLayout boardLayout;
