@@ -41,6 +41,10 @@ public class BoardLayout extends GridView {
             if(selected == null) {
                 select(v);
                 highlightPossibleMoves(chessGame.getPossibleMoves(selected.getPosition()));
+
+                if (chessGame.find(selected.getPosition()).piece().color() != myColor)
+                    deselect();
+
                 return false;
             }
 
@@ -102,20 +106,30 @@ public class BoardLayout extends GridView {
 
     private void drawBoard() {
         int lastColorUsed = Color.GRAY;
-        int count = 1;
 
-        for(int i = 8; i >= 1; i--) {
-            for(int j = 'a'; j <= 'h'; j++) {
-                Block block = chessGame.find(new Position((char) j, i));
-                BlockLayout blockLayout = new BlockLayout(getContext(), lastColorUsed, block.position());
-                blockLayout.setOnTouchListener(new BlockTouchListener());
-                add(blockLayout);
+        if(myColor == PieceColor.WHITE)
+            for(int i = 8; i >= 1; i--)
+                for(int j = 'a'; j <= 'h'; j++) {
+                    newBlockLayout(lastColorUsed, j, i);
 
-                if(count % 8 != 0)
-                    lastColorUsed = lastColorUsed == Color.GRAY ? Color.LTGRAY : Color.GRAY;
-                count++;
-            }
-        }
+                    if(j != 'h')
+                        lastColorUsed = lastColorUsed == Color.GRAY ? Color.LTGRAY : Color.GRAY;
+                }
+        else
+            for(int i = 1; i <= 8; i++)
+                for(int j = 'a'; j <= 'h'; j++) {
+                    newBlockLayout(lastColorUsed, j, i);
+
+                    if(j != 'h')
+                        lastColorUsed = lastColorUsed == Color.GRAY ? Color.LTGRAY : Color.GRAY;
+                }
+    }
+
+    private void newBlockLayout(int color, int col, int row) {
+        Block block = chessGame.find(new Position((char) col, row));
+        BlockLayout blockLayout = new BlockLayout(getContext(), color, block.position());
+        blockLayout.setOnTouchListener(new BlockTouchListener());
+        add(blockLayout);
     }
 
     private PieceView createPieceView(Piece piece) {
