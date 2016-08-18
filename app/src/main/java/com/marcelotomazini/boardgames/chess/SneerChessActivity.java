@@ -2,7 +2,6 @@ package com.marcelotomazini.boardgames.chess;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.LinearLayout;
 
 import sneer.android.Message;
 import sneer.android.PartnerSession;
@@ -28,14 +27,9 @@ public class SneerChessActivity extends AppCompatActivity implements BoardLayout
             }
         });
 
-        renderBoard();
-    }
-
-    private void renderBoard() {
-        boardLayout = new BoardLayout(this, session.wasStartedByMe());
-        LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.addView(boardLayout);
-        setContentView(linearLayout);
+        setContentView(R.layout.activity_main);
+        boardLayout = (BoardLayout)findViewById(R.id.board);
+        boardLayout.init(this, session.wasStartedByMe());
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
@@ -20,6 +21,14 @@ import com.nullpointergames.boardgames.chess.exceptions.PromotionException;
 import java.util.List;
 
 public class BoardLayout extends GridView {
+
+    public BoardLayout(Context context) {
+        super(context);
+    }
+
+    public BoardLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
     public interface OnMoveListener {
         void onMove(String move);
@@ -56,13 +65,11 @@ public class BoardLayout extends GridView {
     private PieceColor myColor;
     private OnMoveListener onMoveListener;
 
-    public BoardLayout(Context context, boolean wasStartedByMe) {
-        super(context);
+    public void init(Context context, boolean wasStartedByMe) {
         this.myColor = wasStartedByMe ? PieceColor.WHITE : PieceColor.BLACK;
         this.chessGame = new ChessGame(myColor);
         setAdapter(new BoardAdapter());
         setBackgroundColor(android.graphics.Color.WHITE);
-        setNumColumns(8);
         drawBoard();
         refresh();
         onMoveListener = (OnMoveListener) context;
