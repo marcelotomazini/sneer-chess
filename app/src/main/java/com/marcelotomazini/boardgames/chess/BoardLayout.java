@@ -91,8 +91,10 @@ public class BoardLayout extends GridView {
             try {
                 Position from = new Position(move.charAt(0), Integer.valueOf(move.substring(1, 2)));
                 Position to = new Position(move.charAt(2), Integer.valueOf(move.substring(3, 4)));
-                chessGame.move(from, to);
+                chessGame.moveWithoutVerification(from, to);
             } catch (Exception e) {}
+
+
     }
 
     public void refresh() {
@@ -101,6 +103,12 @@ public class BoardLayout extends GridView {
             view.removeAllViews();
             PieceView pieceView = createPieceView(chessGame.find(view.getPosition()).piece());
             view.addView(pieceView);
+        }
+
+        try {
+            chessGame.verifyGame();
+        } catch (RuntimeException e) {
+            showMessage(e);
         }
     }
 
@@ -168,18 +176,26 @@ public class BoardLayout extends GridView {
     private void move(Position to) {
         try {
             chessGame.move(selected.getPosition(), to);
+            sendMove(to);
         } catch (PromotionException e) {
+            sendMove(to);
             showPromotePieceDialog();
         } catch (RuntimeException e) {
-            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            showMessage(e);
         }
+    }
 
+    private void sendMove(Position to) {
         StringBuilder move = new StringBuilder()
                 .append(selected.getPosition().col())
                 .append(selected.getPosition().row())
                 .append(to.col())
                 .append(to.row());
         onMoveListener.onMove(move.toString());
+    }
+
+    private void showMessage(RuntimeException e) {
+        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     private void showPromotePieceDialog() {
