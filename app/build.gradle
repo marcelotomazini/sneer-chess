@@ -46,7 +46,7 @@ dependencies {
 }
 
 def askForPassword(description) {
-    userInput = "";
+    String userInput = "";
     new SwingBuilder().edt {
         dialog(modal: true,
                 title: "User input",
