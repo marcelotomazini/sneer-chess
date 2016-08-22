@@ -9,3 +9,4 @@
 .idea
 gradlew*
 *wrapper*
+*.keystore

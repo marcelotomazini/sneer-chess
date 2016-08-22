@@ -1,3 +1,5 @@
+import groovy.swing.SwingBuilder
+
 apply plugin: 'com.android.application'
 
 android {
@@ -13,10 +15,24 @@ android {
         versionName "1.0"
     }
 
+    signingConfigs {
+        release
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    gradle.taskGraph.whenReady { taskGraph ->
+        if (taskGraph.hasTask(':app:assembleRelease')) {
+            android.signingConfigs.release.storeFile     file(askFor("store file"))
+            android.signingConfigs.release.storePassword askForPassword("store password")
+            android.signingConfigs.release.keyAlias      askFor("key alias")
+            android.signingConfigs.release.keyPassword   askForPassword("key password")
         }
     }
 }
@@ -27,4 +43,54 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.marcelotomazini:chess:0.1.5'
     compile 'me.sneer:sneer-android-api:0.1.9@aar'
+}
+
+def askForPassword(description) {
+    userInput = "";
+    new SwingBuilder().edt {
+        dialog(modal: true,
+                title: "User input",
+                alwaysOnTop: true,
+                resizable: false,
+                locationRelativeTo: null,
+                pack: true,
+                show: true
+        ) {
+            vbox {
+                label(text: "Please enter " + description)
+                input = passwordField()
+                button(defaultButton: true, text: 'OK', actionPerformed: {
+                    userInput = input.password;
+                    dispose();
+                })
+            }
+        }
+    }
+
+    return userInput;
+}
+
+def askFor(description) {
+    String userInput = "";
+    new SwingBuilder().edt {
+        dialog(modal: true,
+                title: "User input",
+                alwaysOnTop: true,
+                resizable: false,
+                locationRelativeTo: null,
+                pack: true,
+                show: true
+        ) {
+            vbox {
+                label(text: "Please enter " + description)
+                input = textField()
+                button(defaultButton: true, text: 'OK', actionPerformed: {
+                    userInput = input.text;
+                    dispose();
+                })
+            }
+        }
+    }
+
+    return userInput;
 }
