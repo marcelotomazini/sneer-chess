@@ -5,7 +5,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
-    compileOptions.encoding = 'ISO-8859-1'
 
     defaultConfig {
         applicationId "com.marcelotomazini.boardgames.chess"
@@ -41,7 +40,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
-    compile 'com.marcelotomazini:chess:0.1.5'
+    compile 'com.marcelotomazini:chess:0.1.6'
     compile 'me.sneer:sneer-android-api:0.1.9@aar'
 }
 
