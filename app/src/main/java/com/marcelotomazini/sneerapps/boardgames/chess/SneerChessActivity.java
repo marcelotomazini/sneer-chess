@@ -1,4 +1,4 @@
-package com.marcelotomazini.boardgames.chess;
+package com.marcelotomazini.sneerapps.boardgames.chess;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.marcelotomazini.boardgames.chess;
+package com.marcelotomazini.sneerapps.boardgames.chess;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -175,7 +175,7 @@ public class BoardLayout extends GridView {
 
     private void move(Position to) {
         try {
-            chessGame.move(selected.getPosition(), to);
+            chessGame.clone().move(selected.getPosition(), to);
             sendMove(to);
         } catch (PromotionException e) {
             sendMove(to);

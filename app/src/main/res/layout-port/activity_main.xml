@@ -18,14 +18,14 @@
             android:layout_alignParentBottom="true"
             android:fillViewport="true">
 
-            <com.marcelotomazini.boardgames.chess.BoardLayout
+            <com.marcelotomazini.sneerapps.boardgames.chess.BoardLayout
                 android:id="@+id/board"
                 android:layout_width="360dp"
                 android:layout_height="360dp"
                 android:numColumns="8"
                 android:rowCount="8">
 
-            </com.marcelotomazini.boardgames.chess.BoardLayout>
+            </com.marcelotomazini.sneerapps.boardgames.chess.BoardLayout>
 
         </ScrollView>
 

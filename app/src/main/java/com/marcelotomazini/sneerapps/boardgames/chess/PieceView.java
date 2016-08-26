@@ -1,4 +1,4 @@
-package com.marcelotomazini.boardgames.chess;
+package com.marcelotomazini.sneerapps.boardgames.chess;
 
 import android.content.Context;
 import android.widget.ImageView;

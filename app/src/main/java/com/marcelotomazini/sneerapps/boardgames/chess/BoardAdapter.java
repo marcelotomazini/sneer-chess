@@ -1,4 +1,4 @@
-package com.marcelotomazini.boardgames.chess;
+package com.marcelotomazini.sneerapps.boardgames.chess;
 
 import android.database.DataSetObserver;
 import android.view.View;
