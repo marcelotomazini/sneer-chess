@@ -57,7 +57,6 @@ public class BoardLayout extends GridView {
                 if(chessGame.find(selected.getPosition()).piece().color() == myColor)
                     move(((BlockLayout)v).getPosition());
                 deselect();
-                refresh();
             }
 
             return false;
