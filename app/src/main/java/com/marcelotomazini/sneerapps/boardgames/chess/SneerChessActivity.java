@@ -162,9 +162,7 @@ public class SneerChessActivity extends AppCompatActivity implements BoardLayout
                 StringBuilder move = new StringBuilder()
                         .append('p')
                         .append(pieceType.name());
-                move(move.toString());
-
-                refresh();
+                session.send(move.toString());
             }
         });
     }
