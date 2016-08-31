@@ -8,8 +8,8 @@ android {
         applicationId "com.marcelotomazini.sneerapps.boardgames.chess"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 4
-        versionName "1.3"
+        versionCode 5
+        versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
