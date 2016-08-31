@@ -135,8 +135,7 @@ public class SneerChessActivity extends AppCompatActivity implements BoardLayout
                 .append(to.col())
                 .append(to.row());
 
-        refresh();
-//        session.send(move);
+        session.send(move);
     }
 
     public void move(String move) {
