@@ -4,16 +4,16 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.TableRow;
 
-import com.nullpointergames.boardgames.Position;
+import com.nullpointergames.boardgames.Block;
 
 public class BlockLayout extends FrameLayout {
 
-    private final Position position;
+    private final Block block;
     private final int originalBackgroundColor;
 
-    public BlockLayout(final Context context, final int originalBackgroundColor, final Position position) {
+    public BlockLayout(final Context context, final int originalBackgroundColor, final Block block) {
         super(context);
-        this.position = position;
+        this.block = block;
         this.originalBackgroundColor = originalBackgroundColor;
         setOriginalBackgroundColor();
         setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, 100, 1));
@@ -23,8 +23,8 @@ public class BlockLayout extends FrameLayout {
         setBackgroundColor(originalBackgroundColor);
     }
 
-    public Position getPosition() {
-        return position;
+    public Block getBlock() {
+        return block;
     }
 }
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BoardAdapter implements ListAdapter {
 
-    protected final List<BlockLayout> itemList = new ArrayList<>();
+    private final List<BlockLayout> itemList = new ArrayList<>();
 
     @Override
     public int getCount() {
@@ -72,5 +72,9 @@ public class BoardAdapter implements ListAdapter {
 
     public void add(BlockLayout blockLayout) {
         itemList.add(blockLayout);
+    }
+
+    public List<BlockLayout> getBlockLayouts() {
+        return itemList;
     }
 }

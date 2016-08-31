@@ -25,7 +25,8 @@
                 android:layout_width="400dp"
                 android:layout_height="400dp"
                 android:numColumns="8"
-                android:rowCount="8">
+                android:rowCount="8"
+                android:background="@color/BoardBackground">
 
             </com.marcelotomazini.sneerapps.boardgames.chess.BoardLayout>
 

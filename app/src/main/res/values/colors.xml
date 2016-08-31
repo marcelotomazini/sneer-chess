@@ -3,4 +3,6 @@
     <color name="ColorPrimary">#ffa03228</color>
     <color name="ColorPrimaryLight">#ffce5343</color>
     <color name="ColorAccent">#ff009688</color>
+    <color name="BoardBackground">#ffffff</color>
+    <color name="Highlight">#0db4e2</color>
 </resources>
