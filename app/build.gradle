@@ -8,8 +8,8 @@ android {
         applicationId "com.marcelotomazini.sneerapps.boardgames.chess"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 5
-        versionName "1.4"
+        versionCode 6
+        versionName "1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -25,7 +25,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
-    compile 'com.marcelotomazini:chess:0.1.14'
+    compile 'com.marcelotomazini:chess:0.1.15'
     compile 'me.sneer:sneer-android-api:0.1.9@aar'
 
     androidTestCompile 'com.android.support:support-annotations:24.0.0'
