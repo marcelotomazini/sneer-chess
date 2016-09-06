@@ -157,8 +157,6 @@ public class SneerChessActivity extends AppCompatActivity implements BoardLayout
         newFragment.onSelect(new PromotePieceDialog.SelectionListener() {
             @Override
             public void selected(PieceType pieceType) {
-                chessGame.promoteTo(pieceType);
-
                 StringBuilder move = new StringBuilder()
                         .append('p')
                         .append(pieceType.name());

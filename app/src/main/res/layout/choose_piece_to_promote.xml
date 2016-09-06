@@ -19,30 +19,34 @@
 
         <ImageView
             android:id="@+id/queen"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/promote_piece_height"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/promote_piece_margin"
+            android:scaleType="fitXY"
             android:src="@drawable/black_e"/>
 
         <ImageView
             android:id="@+id/bishop"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/promote_piece_height"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/promote_piece_margin"
+            android:scaleType="fitXY"
             android:src="@drawable/black_s"/>
 
         <ImageView
             android:id="@+id/knight"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/promote_piece_height"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/promote_piece_margin"
+            android:scaleType="fitXY"
             android:src="@drawable/black_i"/>
 
         <ImageView
             android:id="@+id/rook"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/promote_piece_height"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/promote_piece_margin"
+            android:scaleType="fitXY"
             android:src="@drawable/black_o"/>
 
     </LinearLayout>
